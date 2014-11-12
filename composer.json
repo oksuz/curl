@@ -1,0 +1,24 @@
+{
+    "name": "oksuz/curl",
+    "description": "A Simple http library uses curl",
+    "keywords": ["curl", "http request"],
+    "homepage": "https://github.com/oksuz/curl",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Yunus Oksuz",
+            "email": "yunusoksuz@gmail.com",
+            "homepage": "http://yunusoksuz.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*",
+    },
+    "autoload":{
+        "psr-0": {
+            "Curl": "src/oksuz"
+        }
+    }
+}

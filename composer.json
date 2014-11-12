@@ -18,7 +18,7 @@
     },
     "autoload":{
         "psr-0": {
-            "Curl": "src/oksuz"
+            "Curl": "src"
         }
     }
 }

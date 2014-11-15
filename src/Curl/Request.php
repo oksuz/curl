@@ -7,7 +7,10 @@ class Request
 
     public function __construct($url = null)
     {
-        $this->validateUrl($url);
+        if (!empty($url)) {
+            $this->validateUrl($url);
+        }
+        
         $this->curl = curl_init($url);
         $this->prepare();
     }

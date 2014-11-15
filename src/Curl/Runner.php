@@ -5,7 +5,7 @@ class Runner
 {
     public function runSingle(\Curl\Request $c)
     {
-
+        return $this->getCurlResponse($c, curl_exec($c->getCurl()));
     }
 
     public function runMultiple(Array $curl)
@@ -17,7 +17,7 @@ class Runner
         {
             if ($curlInstance instanceof \Curl\Request) {
                 $ch = $curlInstance->getCurl();
-                $chs[$curlInstance->getLastUrl()] = $curlInstance;
+                $chs[] = $curlInstance;
                 curl_multi_add_handle($multiInit, $ch);
             }
         }
@@ -37,14 +37,14 @@ class Runner
         return $retVal;
     }
 
-    protected function getCurlResponse(\Curl\Request $curl, $url, $source)
+    protected function getCurlResponse(\Curl\Request $curl, $source)
     {
         $cresp = new \Curl\Response();
         $header = substr($source, 0, $curl->getHeaderSize());
         $source = substr($source, $curl->getHeaderSize());
 
         $cresp->setHeader($header)
-            ->setUrl($url)
+            ->setUrl($curl->getLastUrl())
             ->setHeaderSize($curl->getHeaderSize())
             ->setResponse($source)
             ->setStatusCode($curl->getStatusCode());

@@ -4,7 +4,7 @@
     "keywords": ["curl", "http request"],
     "homepage": "https://github.com/oksuz/curl",
     "type": "library",
-    "license": "MIT"
+    "license": "MIT",
     "authors": [
         {
             "name": "Yunus Oksuz",

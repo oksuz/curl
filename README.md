@@ -46,7 +46,7 @@ $cli = new \Curl\Request("http://example.org")
 /** @var \Curl\Response $result */
 $result = $cli->post(array("username" => "foo", "password" => "bar"))
     ->addReferer("http://www.google.com/?q=example")
-    ->setOpt(CURLOPT_USERAGENT, "firefox/2.0.16")
+    ->setOpt(CURLOPT_USERAGENT, "firefox/2.0.16") // you can add php's CURL_CONSTANTS
     ->result();
 ```
 
@@ -61,7 +61,7 @@ $clients[] = new \Curl\Request("http://example3.org");
 $runner = new \Curl\Runner();
 /** @var Array $result contains \Curl\Response */
 $result = $runner->runMultiple($cli);
-```
+``
 
 #### More Complex Example
 
@@ -84,5 +84,14 @@ if (200 == $response->getStatusCode()) {
     var_dump($resp);
 }
 
+```
 
+#### Default Values
+
+```php
+CURLOPT_FOLLOWLOCATION => true,
+CURLOPT_USERAGENT => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36",
+CURLOPT_HEADER => true,
+CURLOPT_TIMEOUT => 10,
+CURLOPT_RETURNTRANSFER => true,
 ```

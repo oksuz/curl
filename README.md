@@ -53,6 +53,7 @@ $result = $cli->post(array("username" => "foo", "password" => "bar"))
 Also available put and delete method
 
 #### Runing Multiple Curl Requests
+```php
 $clients = array();
 $clients[] = new \Curl\Request("http://example1.org");
 $clients[] = new \Curl\Request("http://example2.org");
@@ -60,8 +61,7 @@ $clients[] = new \Curl\Request("http://example3.org");
 $runner = new \Curl\Runner();
 /** @var Array $result contains \Curl\Response */
 $result = $runner->runMultiple($cli);
-
-
+```
 
 ### Licence
 

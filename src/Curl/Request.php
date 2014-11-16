@@ -50,7 +50,7 @@ class Request
             $newUrl = $parsedUrl["scheme"] . "://" .
                 $parsedUrl["host"] .
                 ((isset($parsedUrl["path"])) ? $parsedUrl["path"] : "/") .
-                "?" . http_build_query($queryArray);
+                "?" . ((is_array($queryArray)) ? http_build_query($queryArray) : "");
 
             $this->url($newUrl);
             return $this;

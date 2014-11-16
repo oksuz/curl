@@ -61,7 +61,7 @@ $clients[] = new \Curl\Request("http://example3.org");
 $runner = new \Curl\Runner();
 /** @var Array $result contains \Curl\Response */
 $result = $runner->runMultiple($cli);
-``
+```
 
 #### More Complex Example
 

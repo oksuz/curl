@@ -61,8 +61,28 @@ $clients[] = new \Curl\Request("http://example3.org");
 $runner = new \Curl\Runner();
 /** @var Array $result contains \Curl\Response */
 $result = $runner->runMultiple($cli);
+``
+
+#### More Complex Example
+
+```php
+$curl = new \Curl\Request();
+$response = $curl->url("http://www.example.org/login")
+    ->post(array("username" => "user", "password" => "password"))
+    ->addCookieSupport()
+    //OR ->addCookieSupport("/path/to/cookiejar_cookiefile.txt")
+    ->result();
+    
+if (200 == $response->getStatusCode()) {
+    $resp = $curl->url("http://www.example.com/private_area")
+    ->get(array("page" => 1, "do" => "show")) // http://www.example.com/private_area?page=1&do=show
+    ->addHeader(array("HTTP_X_REQUESTED_WITH" => "XMLHttpRequest"))
+    ->addCookie(array("cookie_name" => "cookie_value"))
+    ->setBasicAuth("username", "password")
+    ->result();
+    
+    var_dump($resp);
+}
+
+
 ```
-
-### Licence
-
-MIT

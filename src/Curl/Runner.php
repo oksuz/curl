@@ -3,7 +3,7 @@ namespace Curl;
 
 class Runner
 {
-    public function runSingle(\Curl\Request $c)
+    public function runSingle(Request $c)
     {
         return $this->getCurlResponse($c, curl_exec($c->getCurl()));
     }
@@ -12,10 +12,10 @@ class Runner
     {
         $multiInit = curl_multi_init();
         $chs = array();
-        /** @var \Curl\Request $curlInstance */
+        /** @var Request $curlInstance */
         foreach ($curl as $curlInstance)
         {
-            if ($curlInstance instanceof \Curl\Request) {
+            if ($curlInstance instanceof Request) {
                 $ch = $curlInstance->getCurl();
                 $chs[] = $curlInstance;
                 curl_multi_add_handle($multiInit, $ch);
@@ -31,15 +31,15 @@ class Runner
         /** @var \Curl\Request $c */
         foreach ($chs as $url => &$c) {
             $resp = curl_multi_getcontent($c->getCurl());
-            $retVal[] = $this->getCurlResponse($c, $url, $resp);
+            $retVal[] = $this->getCurlResponse($c, $resp);
         }
 
         return $retVal;
     }
 
-    protected function getCurlResponse(\Curl\Request $curl, $source)
+    protected function getCurlResponse(Request $curl, $source)
     {
-        $cresp = new \Curl\Response();
+        $cresp = new Response();
         $header = substr($source, 0, $curl->getHeaderSize());
         $source = substr($source, $curl->getHeaderSize());
 

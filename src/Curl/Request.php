@@ -10,7 +10,7 @@ class Request
         if (!empty($url)) {
             $this->validateUrl($url);
         }
-        
+
         $this->curl = curl_init($url);
         $this->prepare();
     }
@@ -29,7 +29,7 @@ class Request
 
     public function get(Array $params = array())
     {
-        $this->setOpt(CURLOPT_POST, false);
+        $this->customRequest("GET");
         if (empty($params)) {
             return $this;
         }
@@ -67,35 +67,50 @@ class Request
         return $this;
     }
 
-    /**
-     * @return \Curl\Response
-     */
-    public function result()
+    public function put($params)
     {
-        $runner = new Runner();
-        return $runner->runSingle($this);
+        $this->customRequest("PUT", $params);
+        return $this;
     }
 
     public function post($params)
     {
-        $params = (is_array($params)) ? $params : json_encode($params);
-        $this->setOpt(CURLOPT_POST, true);
-        $this->setOpt(CURLOPT_POSTFIELDS, $params);
+        $this->customRequest("POST", $params);
         return $this;
     }
 
-    public function addCookieSupport()
+    public function delete($params = null)
     {
-        //@FIXME: find and use system temp directory
-        //@FIXME: cookiefile naming
-        $this->setOpt(CURLOPT_COOKIEFILE, "/tmp/curl_request_testcookie.dat");
-        $this->setOpt(CURLOPT_COOKIEJAR, "/tmp/curl_request_testcookie.dat");
+        $this->customRequest("DELETE", $params);
+        return $this;
+    }
+
+    public function addCookieSupport($cookieFile = null)
+    {
+
+        if (null === $cookieFile) {
+            $tempCookieFile = tempnam(sys_get_temp_dir(), "curl_request");
+        } else {
+            if (!is_file($cookieFile) || is_writable($cookieFile)) {
+                throw new \ErrorException("{$cookieFile} not exist or isn't writable");
+            }
+            $tempCookieFile = $cookieFile;
+        }
+
+        $this->setOpt(CURLOPT_COOKIEFILE, $tempCookieFile);
+        $this->setOpt(CURLOPT_COOKIEJAR, $tempCookieFile);
         return $this;
     }
 
     public function addReferer($referer)
     {
         $this->setOpt(CURLOPT_REFERER, $referer);
+        return $this;
+    }
+
+    public function setBasicAuth($username, $password)
+    {
+        $this->setOpt(CURLOPT_USERPWD, sprintf("%s:%s", $username, $password));
         return $this;
     }
 
@@ -114,11 +129,19 @@ class Request
     {
         $header = array();
         array_walk($headers, function($el, $k) use (&$header){
-            $h[] = sprintf("%s: %s", $k, $el);
+            $header[] = sprintf("%s: %s", $k, $el);
         });
         $this->setOpt(CURLOPT_HTTPHEADER, $header);
     }
 
+    /**
+     * @return \Curl\Response
+     */
+    public function result()
+    {
+        $runner = new Runner();
+        return $runner->runSingle($this);
+    }
 
     public function getLastUrl()
     {
@@ -171,5 +194,15 @@ class Request
             CURLOPT_TIMEOUT => 10,
             CURLOPT_RETURNTRANSFER => true,
         ));
+    }
+
+    private function customRequest($requestType, $params = null)
+    {
+        if (null === $params) {
+            $params = (is_array($params)) ? $params : json_encode($params);
+            $this->setOpt(CURLOPT_POSTFIELDS, $params);
+        }
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, $requestType);
+
     }
 }

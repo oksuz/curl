@@ -196,10 +196,9 @@ class Request
         ));
     }
 
-    private function customRequest($requestType, $params = null)
+    private function customRequest($requestType, Array $params = array())
     {
-        if (null === $params) {
-            $params = (is_array($params)) ? $params : json_encode($params);
+        if (!empty($params)) {
             $this->setOpt(CURLOPT_POSTFIELDS, $params);
         }
         $this->setOpt(CURLOPT_CUSTOMREQUEST, $requestType);

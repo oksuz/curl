@@ -1,5 +1,5 @@
 <?php
-namespace Curl;
+namespace Oksuz\Curl;
 
 class Runner
 {
@@ -28,7 +28,7 @@ class Runner
         } while ($running > 0);
 
         $retVal = array();
-        /** @var \Curl\Request $c */
+        /** @var Request $c */
         foreach ($chs as $url => &$c) {
             $resp = curl_multi_getcontent($c->getCurl());
             $retVal[] = $this->getCurlResponse($c, $resp);

@@ -18,8 +18,8 @@
         "ext-curl": "*"
     },
     "autoload":{
-        "psr-0": {
-            "Curl": "src"
+        "psr-4": {
+            "Oksuz\\": "src/"
         }
     }
 }

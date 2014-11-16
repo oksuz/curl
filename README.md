@@ -30,8 +30,8 @@ composer update
 
 #### GET
 ```php
-$cli = new \Curl\Request("http://example.org");
-/** @var \Curl\Response $result */
+$cli = new \Oksuz\Curl\Request("http://example.org");
+/** @var \Oksuz\Curl\Response $result */
 $result = $cli->result();
 
 //echo $result->getHeader();
@@ -42,8 +42,8 @@ echo $result->getResponse();
 #### POST
 
 ```php
-$cli = new \Curl\Request("http://example.org")
-/** @var \Curl\Response $result */
+$cli = new \Oksuz\Curl\Request("http://example.org")
+/** @var \Oksuz\Curl\Response $result */
 $result = $cli->post(array("username" => "foo", "password" => "bar"))
     ->addReferer("http://www.google.com/?q=example")
     ->setOpt(CURLOPT_USERAGENT, "firefox/2.0.16") // you can add php's CURL_CONSTANTS
@@ -55,18 +55,18 @@ Also available put and delete method
 #### Runing Multiple Curl Requests
 ```php
 $clients = array();
-$clients[] = new \Curl\Request("http://example1.org");
-$clients[] = new \Curl\Request("http://example2.org");
-$clients[] = new \Curl\Request("http://example3.org");
-$runner = new \Curl\Runner();
-/** @var Array $result contains \Curl\Response */
+$clients[] = new \Oksuz\Curl\Request("http://example1.org");
+$clients[] = new \Oksuz\Curl\Request("http://example2.org");
+$clients[] = new \Oksuz\Curl\Request("http://example3.org");
+$runner = new \Oksuz\Curl\Runner();
+/** @var Array $result contains \Oksuz\Curl\Response */
 $result = $runner->runMultiple($cli);
 ``` 
 
 #### More Complex Example
 
 ```php
-$curl = new \Curl\Request();
+$curl = new \Oksuz\Curl\Request();
 $response = $curl->url("http://www.example.org/login")
     ->post(array("username" => "user", "password" => "password"))
     ->addCookieSupport()

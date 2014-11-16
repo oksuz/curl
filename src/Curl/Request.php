@@ -1,5 +1,5 @@
 <?php
-namespace Curl;
+namespace Oksuz\Curl;
 
 class Request
 {
@@ -135,7 +135,7 @@ class Request
     }
 
     /**
-     * @return \Curl\Response
+     * @return Response
      */
     public function result()
     {

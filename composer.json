@@ -1,7 +1,7 @@
 {
     "name": "oksuz/curl",
     "description": "A Simple http library uses curl",
-    "keywords": ["curl", "http request"],
+    "keywords": ["curl", "http request", "crawling", "scraping"],
     "homepage": "https://github.com/oksuz/curl",
     "type": "library",
     "license": "MIT",

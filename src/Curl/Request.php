@@ -59,7 +59,7 @@ class Request
         if (!isset($parsedUrl["path"])) {
             $newUrl = $url . "/?" . http_build_query($params);
             $this->url($newUrl);
-        } elseif (isset($parsedUrl["path"]) && "/" == $parsedUrl["path"]) {
+        } elseif (isset($parsedUrl["path"])) {
             $newUrl = $url . "?" . http_build_query($params);
             $this->url($newUrl);
         }

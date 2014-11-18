@@ -9,7 +9,8 @@
         {
             "name": "Yunus Oksuz",
             "email": "yunusoksuz@gmail.com",
-            "role": "Developer"
+            "role": "Developer",
+            "homepage": "http://yunusoksuz.com"
         }
     ],
     "require": {

@@ -1,6 +1,7 @@
 # A Simple Php Curl Library
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oksuz/curl/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/oksuz/curl/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/oksuz/curl/v/stable.svg)](https://packagist.org/packages/oksuz/curl) [![Total Downloads](https://poser.pugx.org/oksuz/curl/downloads.svg)](https://packagist.org/packages/oksuz/curl) [![Latest Unstable Version](https://poser.pugx.org/oksuz/curl/v/unstable.svg)](https://packagist.org/packages/oksuz/curl) [![License](https://poser.pugx.org/oksuz/curl/license.svg)](https://packagist.org/packages/oksuz/curl)
 
 ## Installation
 

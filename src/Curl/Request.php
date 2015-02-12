@@ -27,7 +27,7 @@ class Request
         return $this;
     }
 
-    public function get(Array $params = array())
+    public function get(array $params = array())
     {
         $this->customRequest("GET");
         if (empty($params)) {
@@ -114,7 +114,7 @@ class Request
         return $this;
     }
 
-    public function addCookie(Array $cookies)
+    public function addCookie(array $cookies)
     {
         $cookie = array();
         array_walk($cookies, function($el, $k) use (&$cookie){
@@ -125,7 +125,7 @@ class Request
         $this->setOpt(CURLOPT_COOKIE, $cookie);
     }
 
-    public function addHeader(Array $headers)
+    public function addHeader(array $headers)
     {
         $header = array();
         array_walk($headers, function($el, $k) use (&$header){
@@ -196,7 +196,7 @@ class Request
         ));
     }
 
-    private function customRequest($requestType, Array $params = array())
+    private function customRequest($requestType, array $params = array())
     {
         if (!empty($params)) {
             $this->setOpt(CURLOPT_POSTFIELDS, $params);

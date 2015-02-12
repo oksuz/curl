@@ -8,7 +8,7 @@ class Runner
         return $this->getCurlResponse($c, curl_exec($c->getCurl()));
     }
 
-    public function runMultiple(Array $curl)
+    public function runMultiple(array $curl)
     {
         $multiInit = curl_multi_init();
         $chs = array();

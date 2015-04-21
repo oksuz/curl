@@ -91,7 +91,7 @@ class Request
         if (null === $cookieFile) {
             $tempCookieFile = tempnam(sys_get_temp_dir(), "curl_request");
         } else {
-            if (!is_file($cookieFile) || is_writable($cookieFile)) {
+            if (!is_file($cookieFile) || !is_writable($cookieFile)) {
                 throw new \ErrorException("{$cookieFile} not exist or isn't writable");
             }
             $tempCookieFile = $cookieFile;
